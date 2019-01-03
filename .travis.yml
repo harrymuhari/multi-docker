@@ -20,3 +20,15 @@ after_success:
   - docker push harrymuhari/multi-nginx
   - docker push harrymuhari/multi-server
   - docker push harrymuhari/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app:  multi-docker
+  bucket_name: elasticbeanstalk-us-east-2-279478612126
+  bucket_path: docker-multi
+  on:
+    branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+      secure: $AWS_SECRET_KEY
